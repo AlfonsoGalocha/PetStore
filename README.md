@@ -59,7 +59,11 @@ Esta guía explica cómo instalar PostgreSQL y configurarlo en tu sistema.
 
 ### Helm
 1. Instala Helm siguiendo las instrucciones en: [https://helm.sh/docs/intro/install/](https://helm.sh/docs/intro/install/).
-2. Verifica la instalación:
+2. Instalalo si no de esta manera:
+   ```bash
+      helm repo add kong https://charts.konghq.com/ && helm repo update
+   ```
+3. Verifica la instalación:
    ```bash
    helm version
    ```
