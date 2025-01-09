@@ -207,7 +207,7 @@ Además, verifica que el archivo contenga las siguientes líneas predeterminadas
   curl -X POST "http://api.petstore.com:32023/api/users/register" \
   -H "Content-Type: application/json" \
   -d '{
-  "id": "user001",
+  "id": "user1",
   "username": "testuser",
   "email": "testuser@example.com",
   "password": "securepassword",
@@ -244,14 +244,14 @@ Además, verifica que el archivo contenga las siguientes líneas predeterminadas
   ```bash
   curl -X POST "http://api.petstore.com:<Puerto-KongProxy>/api/products" \
   -H "Content-Type: application/json" \
-  -d '{ "id": "prod005", "name": "Dog Food", "description": "High-quality dog food", "price": 19.99, "category": "cat1", "animaltype": "Dog", "brand": "BrandA", "stock": 100, "images": "https://example.com/dog-food.jpg", "averagerating": 4.5 }'
+  -d '{ "id": "prod5", "name": "Dog Food", "description": "High-quality dog food", "price": 19.99, "category": "cat1", "animaltype": "Dog", "brand": "BrandA", "stock": 100, "images": "https://example.com/dog-food.jpg", "averagerating": 4.5 }'
   ```
 
 - **Actualizar producto**:
   ```bash
   curl -X PUT "http://api.petstore.com:<Puerto-KongProxy>/api/products/prod006" \
   -H "Content-Type: application/json" \
-  -d '{ "id": "prod006", "name": "Cat Toy Deluxe", "description": "An upgraded fun toy for cats", "price": 12.99, "category": "toys", "animaltype": "cat", "brand": "HappyPets Deluxe", "stock": 30, "images": "https://example.com/deluxe-image.jpg", "averagerating": 4.8 }'
+  -d '{ "id": "prod5", "name": "Cat Toy Deluxe", "description": "An upgraded fun toy for cats", "price": 12.99, "category": "toys", "animaltype": "cat", "brand": "HappyPets Deluxe", "stock": 30, "images": "https://example.com/deluxe-image.jpg", "averagerating": 4.8 }'
   ```
 
 - **Eliminar producto**:
@@ -269,16 +269,16 @@ Además, verifica que el archivo contenga las siguientes líneas predeterminadas
   ```bash
   curl -X POST "http://api.petstore.com:<Puerto-KongProxy>/api/cart" \
   -H "Content-Type: application/json" \
-  -d '{ "id": "1", "user_id": "user001", "items": "[{\"product_id\": \"prod001\", \"quantity\": 2}]", "totalamount": 45.50 }'
+  -d '{ "id": "1", "user_id": "user1", "items": "[{\"product_id\": \"prod1\", \"quantity\": 2}]", "totalamount": 45.50 }'
   ```
 
 - **Si te pasas de cantidad de productos**:
   ``` bash
    curl -X POST "http://api.petstore.com:32023/api/cart" \
   -H "Content-Type: application/json" \
-  -d '{ "id": "1", "user_id": "user001", "items": "[{\"product_id\": \"prod003\", \"quantity\": 21}]", "totalamount": 45.50 }'
+  -d '{ "id": "1", "user_id": "user1", "items": "[{\"product_id\": \"prod3\", \"quantity\": 21}]", "totalamount": 45.50 }'
 
-    {"detail":"Not enough stock for product prod003. Available: 20"}%   
+    {"detail":"Not enough stock for product prod3. Available: 20"}%   
 
     ```
 
@@ -287,7 +287,7 @@ Además, verifica que el archivo contenga las siguientes líneas predeterminadas
   ```bash
   curl -X PUT "http://api.petstore.com:<Puerto-KongProxy>/api/cart/3" \
   -H "Content-Type: application/json" \
-  -d '{ "items": "[{\"product_id\": \"prod001\", \"quantity\": 3}, {\"product_id\": \"prod003\", \"quantity\": 1}]", "totalamount": 70.00 }'
+  -d '{ "items": "[{\"product_id\": \"prod1\", \"quantity\": 3}, {\"product_id\": \"prod3\", \"quantity\": 1}]", "totalamount": 70.00 }'
   ```
 
 - **Eliminar carrito**:
@@ -323,7 +323,7 @@ Además, verifica que el archivo contenga las siguientes líneas predeterminadas
 ### Pedidos
 - **Crear pedido**:
   ```bash
-    curl -X POST "http://api.petstore.com:32023/api/orders" \
+    curl -X POST "http://api.petstore.com:<Puerto-KongProxy>/api/orders" \
     -H "Content-Type: application/json" \
     -d '{
     "user_id": "user1",
