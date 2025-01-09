@@ -170,14 +170,14 @@ sudo nano /etc/hosts
 Asegúrate de incluir la siguiente línea:
 
 ```
-192.168.49.2    api.petstore.com
+<ip de minikube>    api.petstore.com
 ```
 
 Además, verifica que el archivo contenga las siguientes líneas predeterminadas:
 
 ```
-127.0.0.1       localhost
-127.0.1.1       alfonso-ubuntu
+<ip localhost>     localhost
+<ip ubuntu>       alfonso-ubuntu
 ```
 
 ---
