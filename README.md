@@ -83,7 +83,10 @@ Esta guía explica cómo instalar PostgreSQL y configurarlo en tu sistema.
 
 ## Configuración de la Base de Datos
 
-1. Ejecuta el archivo deployment.yaml dentro de postgres para obtener el pod.
+1. Ejecuta el archivo deployment.yaml dentro de postgres para obtener el pod:
+   ```bash
+      kubectl apply -f postgres-deployment.yaml
+   ```
 
 2. Accede al pod de PostgreSQL que has creado:
    ```bash
