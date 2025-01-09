@@ -1,0 +1,50 @@
+env:
+  # Habilitar base de datos PostgreSQL
+  database: "postgres"  # Cambia "off" a "postgres" para usar la base de datos
+  pg_host: "postgres"  # Nombre del servicio PostgreSQL en tu clúster
+  pg_port: 5432        # Puerto de PostgreSQL
+  pg_user: "kong"      # Usuario de la base de datos
+  pg_password: "kongpassword"  # Contraseña para el usuario de PostgreSQL
+  pg_database: "kong"  # Nombre de la base de datos
+
+admin:
+  enabled: true
+  service:
+    type: NodePort  # Cambia a LoadBalancer si necesitas acceso externo
+    nodePort: 30270 # Puerto personalizado para la Admin API
+  http:
+    enabled: true
+    servicePort: 8001
+  tls:
+    enabled: true
+
+proxy:
+  enabled: true
+  type: LoadBalancer
+  http:
+    enabled: true
+    servicePort: 80
+  tls:
+    enabled: true
+    servicePort: 443
+
+ingressController:
+  enabled: true
+  installCRDs: true  # Instala los CRDs necesarios para usar Kong como controlador de Ingress
+
+migrations:
+  preUpgrade: true  # Habilita migraciones antes de las actualizaciones
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

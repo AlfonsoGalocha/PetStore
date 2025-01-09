@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: order-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5004
+          env:
+            - name: POSTGRES_HOST
+              value: "postgres"
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: "kong"
+            - name: POSTGRES_PASSWORD
+              value: "kongpassword"
+            - name: POSTGRES_DB
+              value: "kong"
+
+            - name: PRODUCT_SERVICE_URL
+              value: "http://product-service/api/products"
+            
+            - name: USER_SERVICE_URL
+              value: "http://user-service/api/users"
+            
+            - name: CART_SERVICE_URL
+              value: "http://cart-service/api/cart"
+

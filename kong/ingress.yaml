@@ -1,0 +1,179 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  annotations:
+    konghq.com/strip-path: "false"  # No elimina el prefijo de la ruta al pasar al backend
+spec:
+  ingressClassName: kong  # Usamos Kong como controlador de Ingress
+  rules:
+    - host: api.petstore.com  # Dominio del Ingress
+      http:
+        paths:
+          # Rutas para el servicio de usuarios
+          - path: /api/users
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 80
+          - path: /api/users/register
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 80
+          - path: /api/users/login
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 80
+          - path: /api/users/profile
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 80
+          - path: /api/users/addresses
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 80
+
+          # Rutas para el servicio de productos
+          - path: /api/products
+            pathType: Prefix
+            backend:
+              service:
+                name: product-service
+                port:
+                  number: 80
+          - path: /api/products/all
+            pathType: Prefix
+            backend:
+              service:
+                name: product-service
+                port:
+                  number: 80
+          - path: /api/products/{productId}
+            pathType: Prefix
+            backend:
+              service:
+                name: product-service
+                port:
+                  number: 80
+
+          # Rutas para el servicio de carritos
+          - path: /api/cart
+            pathType: Prefix
+            backend:
+              service:
+                name: cart-service
+                port:
+                  number: 80
+                  
+          - path: /api/cart/{cartId}
+            pathType: Prefix
+            backend:
+              service:
+                name: cart-service
+                port:
+                  number: 80
+
+          - path: /api/cart/{cartId}/update
+            pathType: Prefix
+            backend:
+              service:
+                name: cart-service
+                port:
+                  number: 80
+
+          - path: /api/cart/{cartId}/delete
+            pathType: Prefix
+            backend:
+              service:
+                name: cart-service
+                port:
+                  number: 80
+
+          # Rutas para el servicio de categorías
+          - path: /api/categories
+            pathType: Prefix
+            backend:
+              service:
+                name: category-service
+                port:
+                  number: 80
+                  
+          - path: /api/categories/{categoryId}
+            pathType: Prefix
+            backend:
+              service:
+                name: category-service
+                port:
+                  number: 80
+
+          #rutas para el review service
+          # Rutas para el servicio de reviews
+          - path: /api/reviews
+            pathType: Prefix
+            backend:
+              service:
+                name: review-service
+                port:
+                  number: 80
+          - path: /api/reviews/{productId}
+            pathType: Prefix
+            backend:
+              service:
+                name: review-service
+                port:
+                  number: 80
+          - path: /api/reviews/{productId}/{reviewId}
+            pathType: Prefix
+            backend:
+              service:
+                name: review-service
+                port:
+                  number: 80
+
+          # Rutas para el servicio de pedidos
+          - path: /api/orders
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+          - path: /api/orders/{orderId}
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+          - path: /api/orders/{orderId}/cancel
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+
+          # Rutas para el servicio de búsqueda
+          - path: /api/search
+            pathType: Prefix
+            backend:
+              service:
+                name: search-service
+                port:
+                  number: 80
+
+

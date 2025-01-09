@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: category-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: category-service
+  template:
+    metadata:
+      labels:
+        app: category-service
+    spec:
+      containers:
+        - name: category-service
+          image: category-service:latest  # Usa la imagen que tengas del servicio
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5002
+          env:
+            - name: POSTGRES_HOST
+              value: "postgres"  # Nombre del servicio de PostgreSQL en Kubernetes
+            - name: POSTGRES_PORT
+              value: "5432"  # Puerto de PostgreSQL
+            - name: POSTGRES_USER
+              value: "kong"  # Usuario de PostgreSQL
+            - name: POSTGRES_PASSWORD
+              value: "kongpassword"  # Contraseña de PostgreSQL
+            - name: POSTGRES_DB
+              value: "kong"  # Nombre de la base de datos
